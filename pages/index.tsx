@@ -1,5 +1,7 @@
 import Head from "next/head"
 import Header from "../components/Header"
+import Navbar from "../components/Navbar"
+import Results from "../components/Results"
 
 const Home = () => {
   return (
@@ -9,6 +11,8 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
+      <Navbar key={1} title="Mathematics" />
+      <Results />
     </div>
   )
 }
