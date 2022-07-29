@@ -1,8 +1,10 @@
+import FlipMove from "react-flip-move"
 import Thumbnail from "./Thumbnail"
 
 const Results = () => {
+    //change div to FlipMove before mapping through data
     return(
-        <div className="px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3">
+        <div className="px-5 my-10 sm:grid md:grid-cols-2 xl:grid-cols-3 3xl:flex flex-wrap justify-center">
             <Thumbnail
                 key={1}
                 thumbnail={"/thumbnail.webp"}
