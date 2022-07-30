@@ -2,11 +2,11 @@ import Image from "next/image"
 import Link from "next/link"
 import React from "react"
 
-const Thumbnail = React.forwardRef(({ key, thumbnail, title, description, given, completed, reward }, ref) => {
+const Thumbnail = React.forwardRef(({ key, thumbnail, title, description, given, completed, reward, url }, ref) => {
     return(
         <div className="group cursor-pointer p-2 transition duration-200 ease-in transform sm:hover:scale-105 hover:z-50">
-            <Link href="/">
-                <a>
+            <Link href={url}>
+                <a target="_blank">
                     <Image layout="responsive" src={thumbnail} height={1080} width={1920} />
                     <div className="p-2 space-y-1">
                         <h2 className="text-2xl text-white transition-all duration-100 ease-in-out group-hover:font-bold">{title}</h2>

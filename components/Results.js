@@ -9,6 +9,7 @@ const Results = ({ result }) => {
                 result.map(res => (
                     <Thumbnail
                         key={res._id}
+                        url={res.url}
                         thumbnail={urlFor(res.thumbnail.asset._ref).url()}
                         title="Math is fun"
                         description={res.description}
