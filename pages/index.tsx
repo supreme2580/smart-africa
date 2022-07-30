@@ -6,6 +6,7 @@ import Results from "../components/Results"
 import { sanityClient } from "../sanity"
 import { NavItems, Result } from "../typings"
 import { GetServerSideProps } from "next"
+import { useEffect } from "react"
 
 interface Props {
   navItems: [NavItems],
@@ -13,6 +14,7 @@ interface Props {
 }
 
 const Home = ({ navItems, result }: Props) => {
+
   return (
     <div>
       <Head>
