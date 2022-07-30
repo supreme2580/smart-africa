@@ -4,13 +4,15 @@ import Header from "../components/Header"
 import Navbar from "../components/Navbar"
 import Results from "../components/Results"
 import { sanityClient } from "../sanity"
-import { NavItems } from "../typings"
+import { NavItems, Result } from "../typings"
+import { GetServerSideProps } from "next"
 
 interface Props {
-  navItems: [NavItems]
+  navItems: [NavItems],
+  result: [Result]
 }
 
-const Home = ({ navItems }: Props) => {
+const Home = ({ navItems, result }: Props) => {
   return (
     <div>
       <Head>
@@ -19,28 +21,47 @@ const Home = ({ navItems }: Props) => {
       </Head>
       <Header />
       <Navbar navItems={navItems} />
-      <Results />
-      <Footer />
+      {
+        result.length > 0 ? <Results result={result} /> : <div className="text-center absolute top-[50%] inset-x-0 text-2xl">No Files Found</div>
+      }
+      <Footer toBottom={result.length > 0 ? true : false} />
     </div>
   )
 }
 
 export default Home
 
-export const getServerSideProps = async () => {
-  const query = `
+export const getServerSideProps: GetServerSideProps = async (context) => {
+
+  const segment = context.query.segment?.toString().toLocaleLowerCase()
+
+  const queryNav = `
   *[_type == "segments"]{
     segment_name,
-    segment {
-      current
-    }
+    _id
   }
   `
-  const navItems = await sanityClient.fetch(query)
+
+  const queryRes = `
+  *[_type == "post" && segments == "${segment}"]{
+    _id,
+    title,
+    thumbnail,
+    description,
+    url,
+    given,
+    reward,
+    segments
+  }
+  `
+
+  const navItems = await sanityClient.fetch(queryNav)
+  const result = await sanityClient.fetch(queryRes)
 
   return {
       props: {
           navItems,
+          result
       }
   }
 }

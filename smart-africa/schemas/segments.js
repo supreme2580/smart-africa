@@ -8,15 +8,5 @@ export default {
             title: "Segment Name",
             type: "string"
         },
-        {
-            name: "segment",
-            title: "Segment",
-            type: "slug",
-            options: {
-                source: "segment_name",
-                maxLength: 200,
-                slugify: input => input.concat().replace(/\s+/g, ' ').slice(0, 200)
-            }
-        },
     ]
 }

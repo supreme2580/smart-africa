@@ -1,7 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
+import React from "react"
 
-const Thumbnail = ({ key, thumbnail, title, description, given, completed, reward }) => {
+const Thumbnail = React.forwardRef(({ key, thumbnail, title, description, given, completed, reward }, ref) => {
     return(
         <div className="group cursor-pointer p-2 transition duration-200 ease-in transform sm:hover:scale-105 hover:z-50">
             <Link href="/">
@@ -26,5 +27,5 @@ const Thumbnail = ({ key, thumbnail, title, description, given, completed, rewar
             </Link>
         </div>
     )
-}
+})
 export default Thumbnail
