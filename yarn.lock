@@ -38,7 +38,7 @@
     "@nodelib/fs.scandir" "2.1.5"
     "fastq" "^1.6.0"
 
-"@sanity/client@^3.2.0", "@sanity/client@^3.3.0":
+"@sanity/client@^3.2.0", "@sanity/client@^3.3.0", "@sanity/client@^3.3.2":
   "integrity" "sha512-M89v/KcNob0tnoMCW2caSnwYhSSqO1j5XuDXCloe966ZRFUAZWe9EVyyvvP7x1vPff5xR9PKxidrcx95l221mg=="
   "resolved" "https://registry.npmjs.org/@sanity/client/-/client-3.3.2.tgz"
   "version" "3.3.2"

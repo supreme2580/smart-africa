@@ -8,6 +8,13 @@ const Header = () => {
 
     const connected = walletAddress.length == 0 ? false : true
 
+    function loginUser(address) {
+        fetch("/api/loginUser", {
+            method: "POST",
+            body: address
+        }).then(console.log("Great work!")).catch((err) => {console.log(err)})
+    }
+
     async function requestAccount() {
         if (typeof window != "undefined") {
             if (window.ethereum) {
@@ -16,6 +23,7 @@ const Header = () => {
                         method: "eth_requestAccounts",
                     });
                     setWalletAddress(accounts[0])
+                    loginUser(accounts[0])
                 }
                 catch (error) {
                     console.log(error)
