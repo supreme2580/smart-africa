@@ -1,7 +1,32 @@
 import Image from "next/image"
+import { useState } from "react"
 import HeaderItem from "./HeaderItem"
 
 const Header = () => {
+
+    const [walletAddress, setWalletAddress] = useState("")
+
+    const connected = walletAddress.length == 0 ? false : true
+
+    async function requestAccount() {
+        if (typeof window != "undefined") {
+            if (window.ethereum) {
+                try {
+                    const accounts = await window.ethereum.request({
+                        method: "eth_requestAccounts",
+                    });
+                    setWalletAddress(accounts[0])
+                }
+                catch (error) {
+                    console.log(error)
+                }
+            }
+            else {
+                console.log("Metamask not detected")
+            }
+        }
+    }
+
     return(
         <header className="flex flex-col m-5 sm:flex-row justify-between items-center h-auto">
             <div className="flex flex-grow max-w-2xl justify-evenly">
@@ -32,14 +57,22 @@ const Header = () => {
                 } />
             </div>
             <div className="flex flex-col sm:flex-row items-center space-y-2">
-                <button className="border-green-500 border-2 text-white py-1.5 px-3 rounded-lg h-12 flex items-center space-x-1">
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                        </svg>
-                    </div>
-                    <p>Connect</p>
-                </button>
+                {
+                    connected ? (
+                        <div>
+                            {walletAddress.slice(0, 6)}...{walletAddress.slice(39)}
+                        </div>
+                    ) : (
+                        <button className="border-green-500 border-2 text-white py-1.5 px-3 rounded-lg h-12 flex items-center space-x-1" onClick={requestAccount}>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                                </svg>
+                            </div>
+                            <p>Connect Eth Wallet</p>
+                        </button>
+                    )
+                }
                 <Image src="/logo.png" width={200} height={100} />
             </div>
         </header>
