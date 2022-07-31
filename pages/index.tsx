@@ -6,6 +6,7 @@ import Results from "../components/Results"
 import { sanityClient } from "../sanity"
 import { NavItems, Result } from "../typings"
 import { GetServerSideProps } from "next"
+import Image from "next/image"
 
 interface Props {
   navItems: [NavItems],
@@ -23,7 +24,7 @@ const Home = ({ navItems, result }: Props) => {
       <Header />
       <Navbar navItems={navItems} />
       {
-        result.length > 0 ? <Results result={result} /> : <div className="text-center absolute top-[50%] inset-x-0 text-2xl">No Files Found</div>
+        result.length > 0 ? <Results result={result} /> : <div className="text-center absolute top-[50%] inset-x-0 text-2xl"><div className="flex flex-col space-y-2"><div><Image src="/sad.png" width={100} height={100} /></div><h1>No Files Found</h1></div></div>
       }
       <Footer toBottom={result.length > 0 ? true : false} />
     </div>
