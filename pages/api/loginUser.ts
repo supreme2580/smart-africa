@@ -20,9 +20,8 @@ export default async function loginUser(
   const userData = {
     _type: 'user',
     user: data,
-    address: req.connection.remoteAddress
+    address: req.headers["x-real-ip"]
   }
-  
   try {
     await client.create(userData);
   }
@@ -31,5 +30,5 @@ export default async function loginUser(
     return res.status(500).json({ message: 'Could not login to server' })
   }
   console.log(`Logged in ${data}`)
-  res.status(200).json({ message: `Logged in ${data} ${req.connection.remoteAddress}` })
+  res.status(200).json({ message: `Logged in ${data} ${req.headers["x-real-ip"]}` })
 }
