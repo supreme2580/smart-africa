@@ -23,6 +23,7 @@ const Header = () => {
                         method: "eth_requestAccounts",
                     });
                     setWalletAddress(accounts[0])
+                    window.sessionStorage.setItem("eth_address", accounts[0])
                     loginUser(accounts[0])
                 }
                 catch (error) {
@@ -66,9 +67,9 @@ const Header = () => {
             </div>
             <div className="flex flex-col sm:flex-row items-center space-y-2">
                 {
-                    connected ? (
+                    connected.getItem("eth_address") ? (
                         <div>
-                            {walletAddress.slice(0, 6)}...{walletAddress.slice(39)}
+                            {walletAddress?.sessionStorage.getItem("eth_address").slice(0, 6)}...{walletAddress.slice(39)}
                         </div>
                     ) : (
                         <button className="border-green-500 border-2 text-white py-1.5 px-3 rounded-lg h-12 flex items-center space-x-1" onClick={requestAccount}>
