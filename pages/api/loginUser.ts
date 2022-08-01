@@ -17,16 +17,18 @@ export default async function loginUser(
   res: NextApiResponse
 ) {
   const data = req.body
+  const userData = {
+    _type: 'user',
+    user: data,
+    address: req.connection.remoteAddress
+  }
   try {
-    await client.create({
-        _type: 'user',
-    },
-    data);
+    await client.create(userData);
   }
   catch(error) {
     console.log(`Not logged in ${data}`)
     return res.status(500).json({ message: 'Could not login to server' })
   }
   console.log(`Logged in ${data}`)
-  res.status(200).json({ message: `Logged in ${data}` })
+  res.status(200).json({ message: `Logged in ${data} ${req.connection.remoteAddress}` })
 }

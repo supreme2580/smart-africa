@@ -8,5 +8,10 @@ export default {
             title: "Ethereum Address",
             type: "string"
         },
+        {
+            name: "address",
+            title: "Ip Address",
+            type: "string"
+        },
     ]
 }
