@@ -35,7 +35,7 @@ export default Home
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 
-const segment = context.query.segment == "" ? context.query.segment?.toString().toLocaleLowerCase() : "english language"
+const segment = context.query.segment != "" ? context.query.segment?.toString().toLocaleLowerCase() : "english language"
 
   const queryNav = `
   *[_type == "segments"]{
