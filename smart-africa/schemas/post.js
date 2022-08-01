@@ -51,7 +51,7 @@ export default {
             options: {
               list: [ 
                 { title: 'Mathematics', value: 'mathematics'},
-                { title: 'English Language', value: 'english'},
+                { title: 'English Language', value: 'english language'},
                 { title: 'Physical Science', value: 'physical science' },
                 { title: 'Chemical Science', value: 'chemical science' },
                 { title: 'Biological Science', value: 'biological science' },

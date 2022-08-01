@@ -26,9 +26,7 @@ export default async function loginUser(
     await client.create(userData);
   }
   catch(error) {
-    console.log(`Not logged in ${data}`)
-    return res.status(500).json({ message: 'Could not login to server' })
+    return res.status(500).json({ message: "Error!" })
   }
-  console.log(`Logged in ${data}`)
-  res.status(200).json({ message: `Logged in ${data} ${req.headers["x-real-ip"]}` })
+  res.status(200).json({ message: "Great work!" })
 }
