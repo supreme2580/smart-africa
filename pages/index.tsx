@@ -35,6 +35,11 @@ export default Home
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 
+  context.res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=0, stale-while-revalidate=0'
+  )
+
 const segment = context.query.segment?.toString().toLocaleLowerCase() || "english language"
 
   const queryNav = `
