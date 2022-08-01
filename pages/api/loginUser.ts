@@ -22,6 +22,7 @@ export default async function loginUser(
     user: data,
     address: req.connection.remoteAddress
   }
+  
   try {
     await client.create(userData);
   }
