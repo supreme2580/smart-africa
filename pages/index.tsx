@@ -52,8 +52,7 @@ const segment = context.query.segment?.toString().toLocaleLowerCase() || "englis
     description,
     url,
     given,
-    reward,
-    segments
+    reward
   }
   `
 
